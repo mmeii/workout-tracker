@@ -70,12 +70,11 @@ A fitness app that allows users to create, view and track daily workouts. The us
 
 ## Features
 
-* JavaScript
-* MySQL
 * Node
 * Express
-* Handlebars
-* Homemade ORM
+* JavaScript
+* MongoDB
+* Mongoose
 
 ## License
 
