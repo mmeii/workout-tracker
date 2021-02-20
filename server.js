@@ -15,11 +15,11 @@ app.use(express.static("public"));
 
 // add routes
 app.use(require("./routes/html-routes.js"));
-// app.use(require("./routes/api-routes.js"));
+app.use(require("./routes/api-routes.js"));
 
 // connect to db
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/workoutdb", {
+    process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
     useFindAndModify: false
 }
