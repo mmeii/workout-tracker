@@ -64,6 +64,13 @@ WorkoutSchema.virtual("totalDuration").get(function () {
     }, 0);
 });
 
+WorkoutSchema.virtual("totalDistance").get(function () {
+    // show exercise to the current total distance
+    return this.exercises.reduce((total, exercise) => {
+        return total + exercise.distance;
+    }, 0);
+});
+
 const Workout = mongoose.model("Workout", WorkoutSchema);
 
 module.exports = Workout;
