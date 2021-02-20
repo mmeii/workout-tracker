@@ -1,5 +1,4 @@
 // dependencies
-const path = require("path");
 const db = require("../models");
 const router = require("express").Router();
 
@@ -20,15 +19,16 @@ router.get("/api/workouts", (req, res) => {
 router.put("/api/workouts/:id", ({ body, params }, res) => {
     db.Workout.findByIdAndUpdate(
         params.id,
-        { $push: { exercises: body } },
+        {
+            $inc: { totalDuration: req.body.duration },
+            $push: { exercises: body }
+        },
         { new: true }
-    )
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.json(err);
-        });
+    ).then(dbWorkout => {
+        res.json(dbWorkout);
+    }).catch(err => {
+        res.json(err);
+    });
 });
 
 // POST route
