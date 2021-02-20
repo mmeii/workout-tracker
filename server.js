@@ -4,20 +4,26 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models");
+// const db = require("./models");
 
+// express middleware
 const app = express();
-
 app.use(logger("dev"));
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populatedb", { useNewUrlParser: true });
+// add routes
+app.use(require("./routes/html-routes.js"));
+// app.use(require("./routes/api-routes.js"));
 
-
+// connect to db
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://localhost/workoutdb", {
+    useNewUrlParser: true,
+    useFindAndModify: false
+}
+);
 
 // Start the server
 app.listen(PORT, () => {
